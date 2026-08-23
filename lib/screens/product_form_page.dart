@@ -3,35 +3,36 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/services/add_product_service.dart';
 import 'package:store_app/services/update_product_service.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
-class UpdateProductPage extends StatefulWidget {
-  static String id = 'update product';
+class ProductFormPage extends StatefulWidget {
+  static String id = 'product form';
 
-  const UpdateProductPage({super.key});
+  const ProductFormPage({super.key});
 
   @override
-  State<UpdateProductPage> createState() => _UpdateProductPageState();
+  State<ProductFormPage> createState() => _ProductFormPageState();
 }
 
-class _UpdateProductPageState extends State<UpdateProductPage> {
-  String? productName, desc, image;
+class _ProductFormPageState extends State<ProductFormPage> {
+  String? productName, desc, image, category;
   String? price;
   bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    ProductModel product =
-        ModalRoute.of(context)!.settings.arguments as ProductModel;
+    ProductModel? product =
+        ModalRoute.of(context)!.settings.arguments as ProductModel?;
 
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Update Product',
+          title: Text(
+            product == null ? 'Add Product' : 'Update Product',
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.transparent,
@@ -73,14 +74,25 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   },
                   hintText: 'Image',
                 ),
+                const SizedBox(height: 10),
+                CustomTextField(
+                  onChanged: (data) {
+                    category = data;
+                  },
+                  hintText: 'Category',
+                ),
                 const SizedBox(height: 70),
                 CustomButton(
-                  text: 'Update',
+                  text: product == null ? 'Add' : 'Update',
                   onTap: () async {
                     isLoading = true;
                     setState(() {});
                     try {
-                      await updateProduct(product);
+                      if (product == null) {
+                        await addProduct();
+                      } else {
+                        await updateProduct(product);
+                      }
                       log('success');
                     } catch (e) {
                       log(e.toString());
@@ -104,7 +116,17 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
       price: price == null ? product.price.toString() : price!,
       desc: desc == null ? product.description : desc!,
       image: image == null ? product.image : image!,
-      category: product.category,
+      category: category == null ? product.category : category!,
+    );
+  }
+
+  Future<void> addProduct() async {
+    await AddProductService().addProduct(
+      title: productName!,
+      price: price!,
+      desc: desc!,
+      image: image!,
+      category: category!,
     );
   }
 }

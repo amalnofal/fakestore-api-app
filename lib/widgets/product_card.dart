@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
-import 'package:store_app/screens/update_product_page.dart';
+import 'package:store_app/screens/product_form_page.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -49,7 +49,7 @@ class ProductCard extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          UpdateProductPage.id,
+                          ProductFormPage.id,
                           arguments: product,
                         );
                       },
