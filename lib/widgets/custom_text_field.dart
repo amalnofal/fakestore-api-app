@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final int maxLines;
   final List<TextInputFormatter>? inputFormatters;
+  final String? initialValue;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.maxLines = 1,
     this.inputFormatters,
+    this.initialValue,
   });
 
   @override
@@ -27,7 +29,8 @@ class CustomTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
     );
 
-    return TextField(
+    return TextFormField(
+      initialValue: initialValue,
       obscureText: obscureText,
       onChanged: onChanged,
       keyboardType: inputType,

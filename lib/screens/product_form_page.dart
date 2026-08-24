@@ -60,13 +60,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
         ),
         backgroundColor: AppColors.background,
         body: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 100),
                 CustomTextField(
+                  initialValue: product?.title,
                   onChanged: (data) {
                     productName = data;
                   },
@@ -74,6 +74,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
+                  initialValue: product?.description,
                   onChanged: (data) {
                     desc = data;
                   },
@@ -82,6 +83,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
+                  initialValue: product?.price.toString(),
                   onChanged: (data) {
                     price = data;
                   },
@@ -95,6 +97,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
+                  initialValue: product?.image,
                   onChanged: (data) {
                     image = data;
                   },
@@ -102,6 +105,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
+                  initialValue: product?.category,
                   onChanged: (data) {
                     category = data;
                   },
@@ -175,11 +179,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
   Future<void> updateProduct(ProductModel product) async {
     await UpdateProductService().updateProduct(
       id: product.id.toString(),
-      title: productName == null ? product.title : productName!,
-      price: price == null ? product.price.toString() : price!,
-      desc: desc == null ? product.description : desc!,
-      image: image == null ? product.image : image!,
-      category: category == null ? product.category : category!,
+      title: productName ?? product.title,
+      price: price ?? product.price.toString(),
+      desc: desc ?? product.description,
+      image: image ?? product.image,
+      category: category ?? product.category,
     );
   }
 
