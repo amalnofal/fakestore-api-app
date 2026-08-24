@@ -9,6 +9,7 @@ import 'package:store_app/services/add_product_service.dart';
 import 'package:store_app/services/update_product_service.dart';
 import 'package:store_app/widgets/circle_icon_button.dart';
 import 'package:store_app/widgets/custom_button.dart';
+import 'package:store_app/widgets/custom_snack_bar.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
 class ProductFormPage extends StatefulWidget {
@@ -97,7 +98,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   onChanged: (data) {
                     image = data;
                   },
-                  hintText: 'Image',
+                  hintText: 'Image URL',
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
@@ -110,20 +111,57 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 CustomButton(
                   text: product == null ? 'Add' : 'Update',
                   onTap: () async {
+                    if (product == null &&
+                        (productName == null ||
+                            price == null ||
+                            desc == null ||
+                            image == null ||
+                            category == null)) {
+                      showCustomSnackBar(
+                        context,
+                        'Please fill all fields first!',
+                        isError: true,
+                      );
+                      return;
+                    }
+
                     isLoading = true;
                     setState(() {});
+
                     try {
                       if (product == null) {
                         await addProduct();
                       } else {
                         await updateProduct(product);
                       }
-                      log('success');
+
+                      if (!context.mounted) return;
+
+                      isLoading = false;
+                      setState(() {});
+
+                      showCustomSnackBar(
+                        context,
+                        product == null
+                            ? 'Product added successfully!'
+                            : 'Product updated successfully!',
+                      );
+
+                      Navigator.pop(context);
                     } catch (e) {
                       log(e.toString());
+
+                      if (!context.mounted) return;
+
+                      isLoading = false;
+                      setState(() {});
+
+                      showCustomSnackBar(
+                        context,
+                        'Something went wrong, please try again!',
+                        isError: true,
+                      );
                     }
-                    isLoading = false;
-                    setState(() {});
                   },
                 ),
               ],

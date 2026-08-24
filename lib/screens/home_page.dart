@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/constant/app_color.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/screens/product_form_page.dart';
 import 'package:store_app/services/all_products_service.dart';
 import 'package:store_app/widgets/circle_icon_button.dart';
 import 'package:store_app/widgets/product_card.dart';
@@ -22,7 +23,12 @@ class HomePage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleIconButton(iconPath: 'assets/icons/add_icon.svg'),
+              CircleIconButton(
+                iconPath: 'assets/icons/add_icon.svg',
+                onTap: () {
+                  Navigator.pushNamed(context, ProductFormPage.id);
+                },
+              ),
 
               const Text(
                 "New Trend",
