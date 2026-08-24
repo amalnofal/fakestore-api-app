@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:store_app/constant/app_color.dart';
 
 class CircleIconButton extends StatelessWidget {
   final String iconPath;
   final VoidCallback? onTap;
   final double size;
   final double iconSize;
+  final bool matchTextDirection;
 
   const CircleIconButton({
     super.key,
@@ -13,6 +15,7 @@ class CircleIconButton extends StatelessWidget {
     this.onTap,
     this.size = 38,
     this.iconSize = 22,
+    this.matchTextDirection = false,
   });
 
   @override
@@ -25,10 +28,19 @@ class CircleIconButton extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: const Color(0xFF3D3B8E).withValues(alpha: 0.1),
+          color: AppColors.iconBackground,
         ),
         child: Center(
-          child: SvgPicture.asset(iconPath, width: iconSize, height: iconSize),
+          child: SvgPicture.asset(
+            iconPath,
+            width: iconSize,
+            height: iconSize,
+            matchTextDirection: matchTextDirection,
+            colorFilter: const ColorFilter.mode(
+              AppColors.primary,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
       ),
     );

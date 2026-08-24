@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const primary = Color(0xFF3D3B8E);
+  static const primaryLight = Color(0xFF6C63FF);
   static const background = Color(0xFFEEEEF8);
   static const secondaryText = Color(0xFF6A7282);
   static const cardBackground = Colors.white;
-  static final shadow = Colors.grey.withValues(alpha: 0.2);
+  static final shadow = primary.withValues(alpha: 0.08);
+  static final buttonShadow = primary.withValues(alpha: 0.3);
+  static final inputBorder = primary.withValues(alpha: 0.19);
+  static final iconBackground = primary.withValues(alpha: 0.1);
 }
