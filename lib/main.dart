@@ -13,6 +13,7 @@ class StoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: "Poppins"),
       title: 'Store App',
       routes: {
         HomePage.id: (context) => HomePage(),

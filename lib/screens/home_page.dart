@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/all_products_service.dart';
+import 'package:store_app/widgets/circle_icon_button.dart';
 import 'package:store_app/widgets/product_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,18 +13,33 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.cartShopping),
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFEEEEF8),
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleIconButton(iconPath: 'assets/icons/add_icon.svg'),
+
+              const Text(
+                "New Trend",
+                style: TextStyle(
+                  color: Color(0xFF3D3B8E),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              CircleIconButton(iconPath: 'assets/icons/cart_icon.svg'),
+            ],
           ),
-        ],
-        title: Text("New Trend", style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
+        ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFEEEEF8),
       body: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16, top: 85),
+        padding: const EdgeInsets.only(right: 16, left: 16, top: 75),
         child: FutureBuilder<List<ProductModel>>(
           future: AllProductsService().getAllProducts(),
           builder: (context, snapshot) {
@@ -35,9 +50,9 @@ class HomePage extends StatelessWidget {
                 clipBehavior: Clip.none,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1.5,
+                  childAspectRatio: 1.2,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 90,
+                  mainAxisSpacing: 80,
                 ),
                 itemBuilder: (context, index) {
                   return ProductCard(product: products[index]);

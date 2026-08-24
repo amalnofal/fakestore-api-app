@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/product_form_page.dart';
+import 'package:store_app/widgets/circle_icon_button.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -32,9 +33,9 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   product.title,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Color(0xFF6A7282), fontSize: 16),
                 ),
                 SizedBox(height: 8),
                 Row(
@@ -43,7 +44,11 @@ class ProductCard extends StatelessWidget {
                     Text(
                       r"$"
                       "${product.price.toString()}",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF3D3B8E),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -53,9 +58,10 @@ class ProductCard extends StatelessWidget {
                           arguments: product,
                         );
                       },
-                      child: const Icon(
-                        Icons.edit_outlined,
-                        color: Colors.grey,
+                      child: CircleIconButton(
+                        iconPath: "assets/icons/edit_icon.svg",
+                        size: 28,
+                        iconSize: 16,
                       ),
                     ),
                   ],
@@ -69,8 +75,8 @@ class ProductCard extends StatelessWidget {
           top: -60,
           child: Image.network(
             product.image,
-            height: 100,
-            width: 100,
+            height: 90,
+            width: 90,
             errorBuilder: (context, error, stackTrace) {
               return const Icon(
                 Icons.image_not_supported,
