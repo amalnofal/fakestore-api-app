@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/constant/app_color.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/all_products_service.dart';
 import 'package:store_app/widgets/circle_icon_button.dart';
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFEEEEF8),
+        backgroundColor: AppColors.background,
         titleSpacing: 0,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
               const Text(
                 "New Trend",
                 style: TextStyle(
-                  color: Color(0xFF3D3B8E),
+                  color: AppColors.primary,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +38,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Color(0xFFEEEEF8),
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: const EdgeInsets.only(right: 16, left: 16, top: 75),
         child: FutureBuilder<List<ProductModel>>(

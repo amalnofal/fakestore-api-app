@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/constant/app_color.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/product_form_page.dart';
 import 'package:store_app/widgets/circle_icon_button.dart';
@@ -14,12 +15,12 @@ class ProductCard extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
                 blurRadius: 25,
-                color: Colors.grey.withValues(alpha: 0.2),
+                color: AppColors.shadow,
                 spreadRadius: 0,
                 offset: const Offset(0, 10),
               ),
@@ -35,7 +36,7 @@ class ProductCard extends StatelessWidget {
                   product.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Color(0xFF6A7282), fontSize: 16),
+                  style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                 ),
                 SizedBox(height: 8),
                 Row(
@@ -46,7 +47,7 @@ class ProductCard extends StatelessWidget {
                       "${product.price.toString()}",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color(0xFF3D3B8E),
+                        color: AppColors.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
