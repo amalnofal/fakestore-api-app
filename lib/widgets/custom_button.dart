@@ -4,8 +4,9 @@ import 'package:store_app/constant/app_color.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback? onTap;
   final String text;
+  final double? height;
 
-  const CustomButton({super.key, this.onTap, required this.text});
+  const CustomButton({super.key, this.onTap, required this.text, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         width: double.infinity,
-        height: 60,
+        height: height ?? 52,
         child: Center(
           child: Text(
             text,
