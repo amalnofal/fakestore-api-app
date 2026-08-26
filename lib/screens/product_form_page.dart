@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:store_app/constant/app_color.dart';
 import 'package:store_app/cubit/product_form_cubit.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widgets/circle_icon_button.dart';
@@ -55,19 +54,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     },
                   ),
                 ),
-                title: Text(
-                  product == null ? 'Add Product' : 'Update Product',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                backgroundColor: AppColors.background,
-                elevation: 0,
-                centerTitle: true,
+                title: Text(product == null ? 'Add Product' : 'Update Product'),
               ),
-              backgroundColor: AppColors.background,
               body: Padding(
                 padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
