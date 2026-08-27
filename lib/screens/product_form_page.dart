@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/cubit/product_form_cubit.dart';
 import 'package:store_app/models/product_model.dart';
-import 'package:store_app/widgets/circle_icon_button.dart';
+import 'package:store_app/widgets/custom_app_bar.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/custom_snack_bar.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
@@ -42,19 +42,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
           return ModalProgressHUD(
             inAsyncCall: state is ProductFormLoading,
             child: Scaffold(
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                leading: Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: CircleIconButton(
-                    iconPath: 'assets/icons/back_icon.svg',
-                    matchTextDirection: true,
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                title: Text(product == null ? 'Add Product' : 'Update Product'),
+              appBar: CustomAppBar(
+                title: product == null ? 'Add Product' : 'Update Product',
               ),
               body: Padding(
                 padding: const EdgeInsets.all(20),

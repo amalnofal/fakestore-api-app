@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/constant/app_color.dart';
 import 'package:store_app/models/product_model.dart';
-import 'package:store_app/widgets/circle_icon_button.dart';
 import 'package:store_app/widgets/bottom_add_to_cart_bar.dart';
+import 'package:store_app/widgets/custom_app_bar.dart';
 import 'package:store_app/widgets/feature_tag.dart';
 import 'package:store_app/widgets/product_image_badge.dart';
 import 'package:store_app/widgets/rating_stars.dart';
@@ -14,18 +14,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: CircleIconButton(
-            iconPath: 'assets/icons/back_icon.svg',
-            matchTextDirection: true,
-            onTap: () => Navigator.pop(context),
-          ),
-        ),
-        title: const Text('Product Details'),
-      ),
+      appBar: const CustomAppBar(title: 'Product Details'),
       bottomNavigationBar: const BottomAddToCartBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
