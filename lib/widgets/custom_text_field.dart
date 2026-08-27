@@ -42,8 +42,8 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: AppColors.cardBackground,
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 20,
+          horizontal: 16,
+          vertical: 12,
         ),
         enabledBorder: customBorder,
         border: customBorder,
