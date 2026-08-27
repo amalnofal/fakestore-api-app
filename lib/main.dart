@@ -4,11 +4,11 @@ import 'package:store_app/screens/home_page.dart';
 import 'package:store_app/screens/product_form_page.dart';
 
 void main() {
-  runApp(const StoreApp());
+  runApp(const NewTrendApp());
 }
 
-class StoreApp extends StatelessWidget {
-  const StoreApp({super.key});
+class NewTrendApp extends StatelessWidget {
+  const NewTrendApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class StoreApp extends StatelessWidget {
           ),
         ),
       ),
-      title: 'Store App',
+      title: 'New Trend',
       routes: {
         HomePage.id: (context) => HomePage(),
         ProductFormPage.id: (context) => const ProductFormPage(),
